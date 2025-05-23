@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Parks {
+  yq_app_code       String   @id
+  yq_name           String
+  kj_type           String?
+  extra_details_json Json?
+
+  Buildings         Buildings[]
+  Devices           Devices[]
+  Generic_Records   Generic_Records[]
+  Generic_Stats     Generic_Stats_And_TimeSeries[]
+}
+
+model Buildings {
+  building_code     String   @id
+  yq_app_code       String
+  building_name     String
+  floors_info_json  Json?
+
+  Park              Parks    @relation(fields: [yq_app_code], references: [yq_app_code])
+  Devices           Devices[]
+
+  @@index([yq_app_code])
+}
+
+model Devices {
+  device_code           String   @id
+  api_record_id         BigInt?  @unique
+  yq_app_code           String
+  building_code         String?
+  device_name           String
+  device_type           String?
+  device_status         String?
+  location              String?
+  responsible_person_name String?
+  channels_info_json    Json?
+  last_updated          DateTime @default(now()) @updatedAt
+
+  Park                  Parks    @relation(fields: [yq_app_code], references: [yq_app_code])
+  Building              Buildings? @relation(fields: [building_code], references: [building_code])
+  Alarms                Alarms[]
+
+  @@index([yq_app_code])
+  @@index([building_code])
+}
+
+model Alarms {
+  api_record_id      BigInt    @id
+  device_code        String
+  alarm_type         String
+  alarm_level        String?
+  alarm_time         DateTime
+  alarm_status       String
+  location_at_alarm  String?
+  last_updated       DateTime  @default(now()) @updatedAt
+
+  Device             Devices   @relation(fields: [device_code], references: [device_code])
+
+  @@index([device_code])
+}
+
+model Generic_Records {
+  record_id            Int       @id @default(autoincrement())
+  record_type          String
+  yq_app_code_context  String?
+  related_entity_code  String?
+  record_data_json     Json
+  timestamp            DateTime  @default(now())
+
+  Park                 Parks?    @relation(fields: [yq_app_code_context], references: [yq_app_code])
+
+  @@index([yq_app_code_context])
+}
+
+model Generic_Stats_And_TimeSeries {
+  entry_id                Int       @id @default(autoincrement())
+  metric_source_api       String
+  metric_description      String
+  yq_app_code_context     String?
+  related_entity_code_context String?
+  time_period_or_timestamp String
+  value_numeric           Decimal?  @db.Decimal(18,4)
+  value_text              String?
+  value_complex_json      Json?
+  last_updated            DateTime  @default(now()) @updatedAt
+
+  Park                    Parks?    @relation(fields: [yq_app_code_context], references: [yq_app_code])
+
+  @@index([yq_app_code_context])
+}

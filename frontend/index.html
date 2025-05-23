@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>园区管理后台</title>
+  <!-- 你可以加一些全局样式或favicon -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f0f2f5;
+    }
+    h1 {
+      color: #333;
+    }
+    input, textarea, button {
+      margin: 5px 0;
+      padding: 6px;
+      font-size: 14px;
+    }
+    table {
+      background: white;
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React 和你的打包后的脚本文件 -->
+  <!-- 这里举例使用CDN的React，实际生产环境请用打包工具生成的文件 -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
