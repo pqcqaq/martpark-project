@@ -9,6 +9,7 @@ import devicesRouter from './routes/devices'
 import alarmsRouter from './routes/alarms'
 import genericRecordsRouter from './routes/genericRecords'
 import genericStatsRouter from './routes/genericStats'
+import bigdata from './routes/bigdata'
 
 dotenv.config()
 
@@ -24,6 +25,7 @@ app.use('/api/devices', devicesRouter)
 app.use('/api/alarms', alarmsRouter)
 app.use('/api/generic-records', genericRecordsRouter)
 app.use('/api/generic-stats', genericStatsRouter)
+app.use('/api/bigdata', bigdata)
 
 app.get('/', (req, res) => {
     res.send('SmartPark API is running')
