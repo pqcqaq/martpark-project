@@ -194,13 +194,13 @@ export default function Buildings() {
                         <Input />
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                         label="楼层信息 JSON"
                         name="floors_info_json"
                         rules={[{ required: true, message: '请输入楼层信息 JSON' }]}
                     >
                         <TextArea rows={6} style={{ fontFamily: 'monospace' }} />
-                    </Form.Item>
+                    </Form.Item> */}
                 </Form>
             </Modal>
         </div>

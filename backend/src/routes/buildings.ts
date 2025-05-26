@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
                 building_code,
                 yq_app_code,
                 building_name,
-                floors_info_json,
+                floors_info_json: floors_info_json || "{}",
             },
         })
         res.json(newBuilding)

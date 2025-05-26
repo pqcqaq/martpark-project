@@ -36,32 +36,32 @@ export default function App() {
         {
             key: '/parks',
             icon: <HomeOutlined />,
-            label: 'Parks',
+            label: '园区管理',
         },
         {
             key: '/alarms',
             icon: <AlertOutlined />,
-            label: 'Alarms',
+            label: '报警管理',
         },
         {
             key: '/buildings',
             icon: <BuildOutlined />,
-            label: 'Buildings',
+            label: '楼栋管理',
         },
         {
             key: '/devices',
             icon: <DesktopOutlined />,
-            label: 'Devices',
+            label: '设备管理',
         },
         {
             key: '/generic-records',
             icon: <DatabaseOutlined />,
-            label: 'Generic Records',
+            label: '通用记录管理',
         },
         {
             key: '/generic-stats',
             icon: <AppstoreOutlined />,
-            label: 'Generic Stats',
+            label: '通用统计管理',
         },
     ]
 
@@ -85,7 +85,7 @@ export default function App() {
                         fontSize: 18,
                     }}
                 >
-                    Admin
+                    园区管理后台
                 </div>
                 <Menu
                     theme="dark"
